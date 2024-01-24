@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: golang-app-containers
-        image: us-west1-docker.pkg.dev/alpine-theory-411710/kubernetes-go-lang/go-lang-app:v1
+        image: us-west1-docker.pkg.dev/alpine-theory-411710/kubernetes-go-lang/go-lang-app:v2
         ports:
         - containerPort: 8080
