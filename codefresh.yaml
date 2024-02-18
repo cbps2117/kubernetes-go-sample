@@ -1,0 +1,29 @@
+version: '1.0'
+stages:
+  - prepare
+  - build
+  - deploy
+steps:
+  main_clone:
+    title: 'Cloning main repository...'
+    stage: prepare
+    type: git-clone
+    repo: 'cbps2117/kubernetes-go-sample'
+    revision: 'master'
+    git: github
+  build_docker_image:
+    title: 'Building Docker image...'
+    stage: build
+    type: build
+    image_name: your-docker-image
+    working_directory: /code
+    tag: latest
+    dockerfile: Dockerfile
+  deploy_to_gke:
+    title: 'Deploying to GKE...'
+    stage: deploy
+    type: deploy
+    arguments:
+      IMAGE_TAG: ${{CF_SHORT_REVISION}}
+      KUBE_CONTEXT: your-gke-context
+      KUBE_NAMESPACE: your-namespace
